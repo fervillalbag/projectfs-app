@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
   const handleCloseMenu = () => setIsMenuShow(false);
 
   return (
-    <nav className="max-w-6xl w-11/12 mx-auto flex justify-between py-8 items-center">
+    <nav className="sticky top-0 lg:static max-w-6xl w-11/12 mx-auto flex justify-between py-8 items-center">
       <div>
         <Link href="/">
           <a>
