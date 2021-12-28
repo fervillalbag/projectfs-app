@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
 
           <Link href="/">
             <a className="block text-2xl lg:text-base mb-6 lg:mb-0 text-VeryDarkBlue mr-0 lg:mr-8">
-              Pricing
+              Home
             </a>
           </Link>
           <Link href="/">
@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
               Product
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/about">
             <a className="block text-2xl lg:text-base mb-6 lg:mb-0 text-VeryDarkBlue mr-0 lg:mr-8">
               About Us
             </a>
