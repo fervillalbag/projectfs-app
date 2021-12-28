@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { GET_HEADER_HOME } from "../graphql/queries/headerHome";
 import client from "../config/apollo";
 import { GET_GROWTH_HOME } from "../graphql/queries/growthHome";
+import { GET_REVIEW_HOME } from "../graphql/queries/reviewHome";
 
 export const getStaticProps = async () => {
   const { data: headerData } = await client.query({
@@ -15,10 +16,15 @@ export const getStaticProps = async () => {
     query: GET_GROWTH_HOME,
   });
 
+  const { data: reviewData } = await client.query({
+    query: GET_REVIEW_HOME,
+  });
+
   return {
     props: {
       headerData,
       growthData,
+      reviewData,
     },
   };
 };
@@ -26,12 +32,15 @@ export const getStaticProps = async () => {
 const Home = ({
   headerData,
   growthData,
+  reviewData,
 }: {
   headerData: any;
   growthData: any;
+  reviewData: any;
 }) => {
   const headerHomeData = headerData?.getHeaderHome;
   const growthHomeData = growthData?.getGrowthHome;
+  const reviewHomeData = reviewData?.getReviewHome;
 
   return (
     <>
@@ -103,50 +112,25 @@ const Home = ({
       </section>
 
       <section className="max-w-6xl w-11/12 mx-auto text-2xl lg:text-4xl font-bold text-DarkBlue py-8">
-        <h3 className="text-center">What they`ve said</h3>
+        <h3 className="text-center">{reviewHomeData?.title}</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-20 mt-20">
-          <article className="rounded-xl bg-gray p-4">
-            <div className="grid place-items-center py-4">
-              <img
-                src="/avatar-anisha.png"
-                alt=""
-                className="w-32 mt-[-80px]"
-              />
-            </div>
-            <h4 className="text-lg text-center">Anisha Li</h4>
-            <p className="text-base font-normal text-DarkGrayishBlue mt-2 text-center">
-              “Manage has supercharged our team’s workflow. The ability to
-              maintain visibility on larger milestones at all times keeps
-              everyone motivated.”
-            </p>
-          </article>
-          <article className="rounded-xl bg-gray p-4">
-            <div className="grid place-items-center py-4">
-              <img src="/avatar-ali.png" alt="" className="w-32 mt-[-80px]" />
-            </div>
-            <h4 className="text-lg text-center">Ali Bravo</h4>
-            <p className="text-base font-normal text-DarkGrayishBlue mt-2 text-center">
-              “We have been able to cancel so many other subscriptions since
-              using Manage. There is no more cross-channel confusion and
-              everyone is much more focused.”
-            </p>
-          </article>
-          <article className="rounded-xl bg-gray p-4">
-            <div className="grid place-items-center py-4">
-              <img
-                src="/avatar-richard.png"
-                alt=""
-                className="w-32 mt-[-80px]"
-              />
-            </div>
-            <h4 className="text-lg text-center">Richard Watts</h4>
-            <p className="text-base font-normal text-DarkGrayishBlue mt-2 text-center">
-              “Manage allows us to provide structure and process. It keeps us
-              organized and focused. I can’t stop recommending them to everyone
-              I talk to!”
-            </p>
-          </article>
+          {reviewHomeData?.reviews.map((item: any) => (
+            <article key={item.id} className="rounded-xl bg-gray p-4">
+              <div className="grid place-items-center py-4">
+                <img src={item?.avatar} alt="" className="w-32 mt-[-80px]" />
+              </div>
+              <h4 className="text-lg text-center">{item?.name}</h4>
+              {item?.description.map((item: any) => (
+                <p
+                  key={item.id}
+                  className="text-base font-normal text-DarkGrayishBlue mt-2 text-center"
+                >
+                  {item.text}
+                </p>
+              ))}
+            </article>
+          ))}
         </div>
 
         <div className="flex justify-center mt-16">
@@ -182,13 +166,19 @@ const Home = ({
           <div className="order-2 px-4 justify-items-center md:justify-items-start grid grid-cols-2 justify-center lg:col-start-2 lg:row-start-1 row-end-3">
             <div className="">
               <Link href="/">
-                <a className="block text-white mb-4">Home</a>
+                <a className="block text-white mb-4 text-center lg:text-left">
+                  Home
+                </a>
               </Link>
               <Link href="/">
-                <a className="block text-white mb-4">Pricing</a>
+                <a className="block text-white mb-4 text-center lg:text-left">
+                  Pricing
+                </a>
               </Link>
               <Link href="/">
-                <a className="block text-white mb-4">Products</a>
+                <a className="block text-white mb-4 text-center lg:text-left">
+                  Products
+                </a>
               </Link>
               <Link href="/">
                 <a className="block text-white">About Us</a>
@@ -196,13 +186,19 @@ const Home = ({
             </div>
             <div>
               <Link href="/">
-                <a className="block text-white mb-4">Careers</a>
+                <a className="block text-white mb-4 text-center lg:text-left">
+                  Careers
+                </a>
               </Link>
               <Link href="/">
-                <a className="block text-white mb-4">Community</a>
+                <a className="block text-white mb-4 text-center lg:text-left">
+                  Community
+                </a>
               </Link>
               <Link href="/">
-                <a className="block text-white mb-4">Privacy Policy</a>
+                <a className="block text-white mb-4 text-center lg:text-left">
+                  Privacy Policy
+                </a>
               </Link>
             </div>
           </div>
