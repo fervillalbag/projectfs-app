@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { FaTimes, FaBars } from "react-icons/fa";
 
 const Navbar: React.FC = () => {
   const [isMenuShow, setIsMenuShow] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleOpenMenu = () => setIsMenuShow(true);
   const handleCloseMenu = () => setIsMenuShow(false);
@@ -40,27 +42,55 @@ const Navbar: React.FC = () => {
           </button>
 
           <Link href="/">
-            <a className="block text-2xl lg:text-base mb-6 lg:mb-0 text-VeryDarkBlue mr-0 lg:mr-8">
+            <a
+              className={`block text-2xl lg:text-base mb-6 lg:mb-0 mr-0 lg:mr-8 ${
+                router.pathname === "/" ? "text-BrightRed" : "text-VeryDarkBlue"
+              }`}
+            >
               Home
             </a>
           </Link>
-          <Link href="/">
-            <a className="block text-2xl lg:text-base mb-6 lg:mb-0 text-VeryDarkBlue mr-0 lg:mr-8">
+          <Link href="/products">
+            <a
+              className={`block text-2xl lg:text-base mb-6 lg:mb-0 mr-0 lg:mr-8 ${
+                router.pathname === "/products"
+                  ? "text-BrightRed"
+                  : "text-VeryDarkBlue"
+              }`}
+            >
               Product
             </a>
           </Link>
           <Link href="/about">
-            <a className="block text-2xl lg:text-base mb-6 lg:mb-0 text-VeryDarkBlue mr-0 lg:mr-8">
+            <a
+              className={`block text-2xl lg:text-base mb-6 lg:mb-0 mr-0 lg:mr-8 ${
+                router.pathname === "/about"
+                  ? "text-BrightRed"
+                  : "text-VeryDarkBlue"
+              }`}
+            >
               About Us
             </a>
           </Link>
           <Link href="/">
-            <a className="block text-2xl lg:text-base mb-6 lg:mb-0 text-VeryDarkBlue mr-0 lg:mr-8">
+            <a
+              className={`block text-2xl lg:text-base mb-6 lg:mb-0 mr-0 lg:mr-8 ${
+                router.pathname === "/careers"
+                  ? "text-BrightRed"
+                  : "text-VeryDarkBlue"
+              }`}
+            >
               Careers
             </a>
           </Link>
           <Link href="/">
-            <a className="block text-2xl lg:text-base text-VeryDarkBlue">
+            <a
+              className={`block text-2xl lg:text-base mb-6 lg:mb-0 mr-0 lg:mr-8 ${
+                router.pathname === "/community"
+                  ? "text-BrightRed"
+                  : "text-VeryDarkBlue"
+              }`}
+            >
               Community
             </a>
           </Link>
