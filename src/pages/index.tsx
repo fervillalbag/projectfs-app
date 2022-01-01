@@ -43,6 +43,8 @@ const Home = ({
   const growthHomeData = growthData?.getGrowthHome;
   const reviewHomeData = reviewData?.getReviewHome;
 
+  console.log(headerHomeData);
+
   return (
     <>
       <Head>
