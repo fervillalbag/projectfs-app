@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
       <div
         className={`${
           isMenuShow ? "translate-y-0" : "translate-y-[-2000px]"
-        } lg:translate-y-0 fixed left-0 top-0 bg-white md:bg-transparent w-screen h-full lg:w-auto lg:h-auto lg:static lg:flex flex-col lg:flex-row items-center justify-center z-10`}
+        } lg:translate-y-0 fixed left-0 top-0 bg-white md:bg-transparent w-screen h-full lg:w-auto lg:h-auto lg:static lg:flex flex-col lg:flex-row items-center justify-center z-[2000]`}
       >
         <div className="flex flex-col lg:flex-row w-full h-full items-center justify-center relative">
           <button

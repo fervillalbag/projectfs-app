@@ -1,4 +1,5 @@
 import React from "react";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -8,7 +9,13 @@ import { GET_HEADER_HOME } from "../graphql/queries/headerHome";
 import { GET_GROWTH_HOME } from "../graphql/queries/growthHome";
 import { GET_REVIEW_HOME } from "../graphql/queries/reviewHome";
 
-export const getStaticProps = async () => {
+interface HomeIprops {
+  headerData: any;
+  growthData: any;
+  reviewData: any;
+}
+
+export const getStaticProps: GetStaticProps = async () => {
   const { data: headerData } = await client.query({
     query: GET_HEADER_HOME,
   });
@@ -27,23 +34,14 @@ export const getStaticProps = async () => {
       growthData,
       reviewData,
     },
+    revalidate: 1,
   };
 };
 
-const Home = ({
-  headerData,
-  growthData,
-  reviewData,
-}: {
-  headerData: any;
-  growthData: any;
-  reviewData: any;
-}) => {
+const Home: React.FC<HomeIprops> = ({ headerData, growthData, reviewData }) => {
   const headerHomeData = headerData?.getHeaderHome;
   const growthHomeData = growthData?.getGrowthHome;
   const reviewHomeData = reviewData?.getReviewHome;
-
-  console.log(headerHomeData);
 
   return (
     <>
@@ -63,14 +61,15 @@ const Home = ({
             <h3 className="text-4xl lg:text-6xl font-bold text-DarkBlue">
               {headerHomeData?.title}
             </h3>
-            {headerHomeData?.description.map((item: any) => (
-              <p
-                key={item.id}
-                className="w-full lg:w-8/12 text-DarkGrayishBlue mt-6"
-              >
-                {item.text}
-              </p>
-            ))}
+            {headerHomeData &&
+              headerHomeData.description.map((item: any) => (
+                <p
+                  key={item.id}
+                  className="w-full lg:w-8/12 text-DarkGrayishBlue mt-6"
+                >
+                  {item.text}
+                </p>
+              ))}
           </div>
           <div className="flex flex-1 justify-center">
             <div>

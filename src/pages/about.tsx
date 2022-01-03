@@ -17,7 +17,6 @@ export const getStaticProps = async () => {
 
 const About = ({ aboutData }: { aboutData: any }) => {
   const aboutDataPage = aboutData?.getAboutPage;
-  console.log(aboutDataPage);
 
   return (
     <>

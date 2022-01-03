@@ -1,4 +1,5 @@
 import React from "react";
+import { GetServerSideProps } from "next";
 import { RiShoppingCartFill } from "react-icons/ri";
 import Link from "next/link";
 
@@ -6,7 +7,11 @@ import Layout from "../layout";
 import client from "../config/apollo";
 import { GET_PRODUCTS } from "../graphql/queries/products";
 
-export const getStaticProps = async () => {
+interface ProductsIprops {
+  dataProducts: any;
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data: dataProducts } = await client.query({
     query: GET_PRODUCTS,
   });
@@ -18,7 +23,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const Products = ({ dataProducts }: { dataProducts: any }) => {
+const Products: React.FC<ProductsIprops> = ({ dataProducts }) => {
   const dataProductsPage = dataProducts?.getProducts;
 
   return (
@@ -27,7 +32,7 @@ const Products = ({ dataProducts }: { dataProducts: any }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-10">
           {dataProductsPage.map((item: any) => (
             <article key={item.id} className="">
-              <Link href="/">
+              <Link href={`/product/${item.id}`}>
                 <a>
                   <div className="border border-DarkGrayishBlue p-4">
                     <img
