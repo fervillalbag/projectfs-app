@@ -2,9 +2,9 @@ import React from "react";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import { GET_PRODUCTS, GET_PRODUCT } from "../../graphql/queries/products";
-import client from "../../config/apollo";
-import Layout from "../../layout";
+import { GET_PRODUCTS, GET_PRODUCT } from "@/graphql/queries/products";
+import client from "@/config/apollo";
+import Layout from "@/layout";
 
 interface ProductIprops {
   dataProduct: any;

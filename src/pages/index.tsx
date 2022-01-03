@@ -3,11 +3,11 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
-import client from "../config/apollo";
-import Layout from "../layout";
-import { GET_HEADER_HOME } from "../graphql/queries/headerHome";
-import { GET_GROWTH_HOME } from "../graphql/queries/growthHome";
-import { GET_REVIEW_HOME } from "../graphql/queries/reviewHome";
+import client from "@/config/apollo";
+import Layout from "@/layout";
+import { GET_HEADER_HOME } from "@/graphql/queries/headerHome";
+import { GET_GROWTH_HOME } from "@/graphql/queries/growthHome";
+import { GET_REVIEW_HOME } from "@/graphql/queries/reviewHome";
 
 interface HomeIprops {
   headerData: any;

@@ -1,8 +1,9 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import client from "../config/apollo";
-import { GET_ABOUT_PAGE } from "../graphql/queries/aboutPage";
-import Layout from "../layout";
+
+import client from "@/config/apollo";
+import { GET_ABOUT_PAGE } from "@/graphql/queries/aboutPage";
+import Layout from "@/layout";
 
 export const getStaticProps = async () => {
   const { data: aboutData } = await client.query({

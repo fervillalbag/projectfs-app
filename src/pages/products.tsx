@@ -3,9 +3,9 @@ import { GetServerSideProps } from "next";
 import { RiShoppingCartFill } from "react-icons/ri";
 import Link from "next/link";
 
-import Layout from "../layout";
-import client from "../config/apollo";
-import { GET_PRODUCTS } from "../graphql/queries/products";
+import Layout from "@/layout";
+import client from "@/config/apollo";
+import { GET_PRODUCTS } from "@/graphql/queries/products";
 
 interface ProductsIprops {
   dataProducts: any;
