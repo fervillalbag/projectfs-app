@@ -56,7 +56,7 @@ const Product: React.FC<ProductIprops> = ({ dataProduct }) => {
             />
           </div>
           <div className="px-3 lg:p-0">
-            <h3 className="font-bold text-VeryDarkBlue text-4xl">
+            <h3 className="font-bold text-VeryDarkBlue text-2xl lg:text-4xl">
               {productDataPage?.name}
             </h3>
             <div className="flex items-center mt-1">
@@ -70,7 +70,7 @@ const Product: React.FC<ProductIprops> = ({ dataProduct }) => {
             {productDataPage?.description.map((item: any) => (
               <span
                 key={item.id}
-                className="block text-DarkGrayishBlue w-9/12 mt-3"
+                className="block text-DarkGrayishBlue lg:w-9/12 mt-3"
               >
                 {item?.text}
               </span>

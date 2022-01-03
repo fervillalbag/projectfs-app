@@ -1,4 +1,5 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import client from "../config/apollo";
 import { GET_ABOUT_PAGE } from "../graphql/queries/aboutPage";
 import Layout from "../layout";
@@ -36,9 +37,9 @@ const About = ({ aboutData }: { aboutData: any }) => {
             ))}
           </div>
           <div>
-            <img
+            <LazyLoadImage
               src={aboutDataPage?.image}
-              alt=""
+              alt="Business image"
               className="w-full object-cover align-top"
             />
           </div>
