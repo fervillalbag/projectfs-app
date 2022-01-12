@@ -1,10 +1,13 @@
 import React from "react";
+import Link from "next/link";
 import { GetServerSideProps } from "next";
 import { RiShoppingCartFill } from "react-icons/ri";
-import Link from "next/link";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { motion } from "framer-motion";
 
 import Layout from "@/layout";
 import client from "@/config/apollo";
+import Loading from "@/components/Loading";
 import { GET_PRODUCTS } from "@/graphql/queries/products";
 
 interface ProductsIprops {
@@ -26,16 +29,23 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Products: React.FC<ProductsIprops> = ({ dataProducts }) => {
   const dataProductsPage = dataProducts?.getProducts;
 
+  if (!dataProductsPage) return <Loading />;
+
   return (
     <Layout>
-      <div className="max-w-6xl w-11/12 mx-auto py-4 pb-16">
+      <motion.div
+        className="max-w-6xl w-11/12 mx-auto py-4 pb-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 1.5, type: "spring" } }}
+        exit={{ opacity: 0 }}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-10">
           {dataProductsPage.map((item: any) => (
             <article key={item.id} className="">
               <Link href={`/product/${item.id}`}>
                 <a>
                   <div className="border border-DarkGrayishBlue p-4">
-                    <img
+                    <LazyLoadImage
                       src={item?.image}
                       alt=""
                       className="w-full object-cover align-top"
@@ -70,7 +80,7 @@ const Products: React.FC<ProductsIprops> = ({ dataProducts }) => {
             </article>
           ))}
         </div>
-      </div>
+      </motion.div>
     </Layout>
   );
 };
