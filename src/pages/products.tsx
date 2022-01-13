@@ -3,7 +3,6 @@ import Link from "next/link";
 import { GetServerSideProps } from "next";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { motion } from "framer-motion";
 
 import Layout from "@/layout";
 import client from "@/config/apollo";
@@ -33,12 +32,7 @@ const Products: React.FC<ProductsIprops> = ({ dataProducts }) => {
 
   return (
     <Layout>
-      <motion.div
-        className="max-w-6xl w-11/12 mx-auto py-4 pb-16"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 1.5, type: "spring" } }}
-        exit={{ opacity: 0 }}
-      >
+      <div className="max-w-6xl w-11/12 mx-auto py-4 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-10">
           {dataProductsPage.map((item: any) => (
             <article key={item.id} className="">
@@ -80,7 +74,7 @@ const Products: React.FC<ProductsIprops> = ({ dataProducts }) => {
             </article>
           ))}
         </div>
-      </motion.div>
+      </div>
     </Layout>
   );
 };

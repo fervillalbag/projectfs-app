@@ -1,7 +1,6 @@
 import React from "react";
 import { GetStaticProps } from "next";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import client from "@/config/apollo";
@@ -48,11 +47,7 @@ const Home: React.FC<HomeIprops> = ({ headerData, growthData, reviewData }) => {
   if (!headerHomeData || !growthHomeData || !reviewHomeData) return <Loading />;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 1.5, type: "spring" } }}
-      exit={{ opacity: 0 }}
-    >
+    <div>
       <Layout>
         <div className="hidden lg:block absolute right-[-160px] top-[-200px] -z-10">
           <img src="/bg-tablet-pattern.svg" alt="" />
@@ -163,7 +158,7 @@ const Home: React.FC<HomeIprops> = ({ headerData, growthData, reviewData }) => {
           </div>
         </section>
       </Layout>
-    </motion.div>
+    </div>
   );
 };
 

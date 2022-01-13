@@ -1,6 +1,5 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { motion } from "framer-motion";
 
 import client from "@/config/apollo";
 import { GET_ABOUT_PAGE } from "@/graphql/queries/aboutPage";
@@ -25,11 +24,7 @@ const About = ({ aboutData }: { aboutData: any }) => {
   if (!aboutDataPage) return <Loading />;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 1.5, type: "spring" } }}
-      exit={{ opacity: 0 }}
-    >
+    <div>
       <Layout>
         <div className="grid grid-cols-1 gap-y-10 lg:gap-y-0 lg:grid-cols-2 pt-0 lg:pt-8 pb-16 lg:pb-20 max-w-6xl w-11/12 mx-auto">
           <div>
@@ -54,7 +49,7 @@ const About = ({ aboutData }: { aboutData: any }) => {
           </div>
         </div>
       </Layout>
-    </motion.div>
+    </div>
   );
 };
 
